@@ -14,15 +14,13 @@ public class Student {
     String Class;
     boolean presence;
     String subject; //Er usikker på, om den skal stå her, eller om den evt skal være en arrayliste???
-    boolean sorted;
-
+    
     //Constructor for the Student object
     public Student(int student_id, String student_name, String Class, boolean presence, boolean sorted) {
         this.student_id = student_id;
         this.student_name = student_name;
         this.Class = Class;
         presence = true;
-        sorted = false;
     }
 
     //Method setting presence to false

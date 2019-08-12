@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 
@@ -41,8 +42,8 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton10 = new javax.swing.JButton();
+        GroupSizeBox = new javax.swing.JComboBox<>();
+        SortStudentButton = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -105,16 +106,21 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Group size:");
 
-        jComboBox1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
-
-        jButton10.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(0, 51, 153));
-        jButton10.setText("Sort Students");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        GroupSizeBox.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        GroupSizeBox.setForeground(new java.awt.Color(0, 0, 102));
+        GroupSizeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
+        GroupSizeBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                GroupSizeBoxActionPerformed(evt);
+            }
+        });
+
+        SortStudentButton.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        SortStudentButton.setForeground(new java.awt.Color(0, 51, 153));
+        SortStudentButton.setText("Sort Students");
+        SortStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SortStudentButtonActionPerformed(evt);
             }
         });
 
@@ -129,9 +135,9 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
                 .addGap(25, 25, 25)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GroupSizeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
-                .addComponent(jButton10)
+                .addComponent(SortStudentButton)
                 .addGap(21, 21, 21))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel13)
@@ -144,9 +150,9 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(GroupSizeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5))
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SortStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -544,10 +550,10 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
             }
         });
         ListOfAllStudents.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 ListOfAllStudentsInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jScrollPane1.setViewportView(ListOfAllStudents);
@@ -717,9 +723,10 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void SortStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortStudentButtonActionPerformed
+      int selectedGroupSize = (int)GroupSizeBox.getSelectedItem();
+      //GroupGeneratorConfiguration config = new GroupGeneratorConfiguration(selectedGroupSize);
+    }//GEN-LAST:event_SortStudentButtonActionPerformed
 
     private void DevideStudent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevideStudent1ActionPerformed
         String Students = inputStudentName.getText();
@@ -762,6 +769,12 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         
     }//GEN-LAST:event_AddClassNameActionPerformed
 
+    public void addClassesToClassNameBox(List<String> Classes){
+        for(String s : Classes){
+            jComboBoxClassName.addItem(s);
+        }
+    }
+    
     private void AddSubjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSubjectNameActionPerformed
 
         //try {
@@ -831,6 +844,10 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxClassNameActionPerformed
 
+    private void GroupSizeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupSizeBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GroupSizeBoxActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -870,23 +887,23 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
     private javax.swing.JButton AddSubjectName;
     private javax.swing.JComboBox<String> DevideStudent1;
     private javax.swing.JComboBox<String> DevideStudent2;
+    private javax.swing.JComboBox<String> GroupSizeBox;
     private javax.swing.JLabel Instruction1ClassSubject;
     private javax.swing.JLabel Instruction2Students;
     private javax.swing.JList<String> ListOfAllStudents;
     private javax.swing.JComboBox<String> PairStudent1;
     private javax.swing.JComboBox<String> PairStudent2;
     private javax.swing.JLabel ProgramTitle;
+    private javax.swing.JButton SortStudentButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField inputClassName;
     private javax.swing.JTextField inputStudentName;
     private javax.swing.JTextField inputSubjectName;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JColorChooser jColorChooser1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxClassName;
     private javax.swing.JComboBox<String> jComboBoxSubjectName;
     private javax.swing.JLabel jLabel1;
@@ -926,6 +943,5 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

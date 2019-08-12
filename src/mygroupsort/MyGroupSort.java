@@ -32,7 +32,14 @@ public class MyGroupSort {
     public static void main(String[] args) throws SQLException {
         MyGroupSort pro = new MyGroupSort();
         pro.createConnection();
-
+        SQLStatements sql = new SQLStatements();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ClassSortingFrame classFrame = new ClassSortingFrame();
+                //classFrame.addClassesToClassNameBox(sql.RetrieveClasses());
+                classFrame.setVisible(true);
+            }
+        });
     }
 
     void createConnection() throws SQLException {
@@ -40,6 +47,7 @@ public class MyGroupSort {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/groupsort", "root", "Spiren22");
             Statement stmt = con.createStatement();
+            
             {
                 /* ResultSet rs = stmt.executeQuery("SELECT * FROM STUDENT");
             while (rs.next() ){
@@ -48,7 +56,7 @@ public class MyGroupSort {
                String Class = rs.getString("class");
                System.out.println(student_id + " " + " " + student_name + " " + Class  );
                  */
-                stmt.executeUpdate("INSERT INTO STUDENT (STUDENT_NAME, CLASS) VALUES ('Tenna', '2Y')");
+                //stmt.executeUpdate("INSERT INTO STUDENT (STUDENT_NAME, CLASS) VALUES ('Tenna', '2Y')");
             }
 
             System.out.println("Connection to database was a succes");
@@ -57,11 +65,5 @@ public class MyGroupSort {
         } catch (SQLException ex) {
             Logger.getLogger(MyGroupSort.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClassSortingFrame().setVisible(true);
-            }
-        });
     }
 }
