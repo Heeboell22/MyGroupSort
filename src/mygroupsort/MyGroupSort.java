@@ -36,7 +36,7 @@ public class MyGroupSort {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ClassSortingFrame classFrame = new ClassSortingFrame();
-                //classFrame.addClassesToClassNameBox(sql.RetrieveClasses());
+                classFrame.addClassesToClassNameBox(sql.RetrieveClasses());
                 classFrame.setVisible(true);
             }
         });

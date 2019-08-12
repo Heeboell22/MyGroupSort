@@ -20,22 +20,23 @@ import java.util.List;
 public class SQLStatements {
 
     public List<String> RetrieveClasses() {
-        ResultSet queryResult = null;
+        List<String> queryList = null;
         try {
-            queryResult = executeSQLStatement("'select distinct class from Student'");
+            queryList = executeSQLStatement("select distinct class from Student;");
         } catch (SQLException e) {
-            System.out.println("Bad SQL statement");
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println("Should not happen");
+            e.printStackTrace();
         }
-        return parseClassesToList(queryResult);
+        return queryList;
     }
 
-    private ResultSet executeSQLStatement(String sql) throws SQLException, ClassNotFoundException {
+    private List<String> executeSQLStatement(String sql) throws SQLException, ClassNotFoundException {
+        
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/groupsort", "root", "Spiren22");
         Statement statement = con.createStatement();
-        ResultSet queryResult = statement.executeQuery(sql);
+        List<String> queryResult = parseClassesToList(statement.executeQuery(sql));
         con.close();
         return queryResult;
     }
@@ -43,12 +44,11 @@ public class SQLStatements {
     private List<String> parseClassesToList(ResultSet classResult) {
         List<String> returnList = new ArrayList<String>();
         try {
-            returnList.add(classResult.getString("class"));
             while (classResult.next()) {
                 returnList.add(classResult.getString("class"));
             }
         } catch (SQLException e) {
-            System.out.println("SQL Exception");
+            e.printStackTrace();
         }
         return returnList;
     }

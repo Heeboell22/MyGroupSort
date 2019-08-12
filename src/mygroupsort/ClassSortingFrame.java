@@ -205,7 +205,6 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         Instruction1ClassSubject.setText("1. Enter the name of the class and their subject here:");
 
         jComboBoxClassName.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jComboBoxClassName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Class List" }));
         jComboBoxClassName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxClassNameActionPerformed(evt);
@@ -841,7 +840,8 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
     }//GEN-LAST:event_PairStudent2MouseClicked
 
     private void jComboBoxClassNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassNameActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Class Chosen: " + jComboBoxClassName.getSelectedItem());
+        ListOfAllStudents.removeAll();
     }//GEN-LAST:event_jComboBoxClassNameActionPerformed
 
     private void GroupSizeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupSizeBoxActionPerformed
