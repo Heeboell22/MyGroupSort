@@ -29,7 +29,7 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         ListOfAllStudents.setModel(dm);
         dm.addElement(student_name);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -194,6 +194,7 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         });
 
         AddSubjectName.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        AddSubjectName.setForeground(new java.awt.Color(0, 51, 153));
         AddSubjectName.setText("+Add Subject");
         AddSubjectName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +206,11 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         Instruction1ClassSubject.setText("1. Enter the name of the class and their subject here:");
 
         jComboBoxClassName.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jComboBoxClassName.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jComboBoxClassNameComponentShown(evt);
+            }
+        });
         jComboBoxClassName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxClassNameActionPerformed(evt);
@@ -212,7 +218,16 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         });
 
         jComboBoxSubjectName.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jComboBoxSubjectName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Subject List" }));
+        jComboBoxSubjectName.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jComboBoxSubjectNameComponentShown(evt);
+            }
+        });
+        jComboBoxSubjectName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSubjectNameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -649,9 +664,9 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
                 .addComponent(ProgramTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -775,22 +790,19 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
     }
     
     private void AddSubjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSubjectNameActionPerformed
-
-        //try {
         String subject_name = inputSubjectName.getText();
-        /* PreparedStatement stmt = con.prepareStatement("INSERT INTO SUBJECT VALUES(?)");
-           stmt.setString(1, subject_name);
-           stmt.execute();
-           System.out.println("Insert Subject name complete");
-           stmt.close();
-           
-           //String dbop = ("INSERT INTO SUBJECT VALUES ('" + subject_name +"')"); 
-       } catch (SQLException ex) {
-           Logger.getLogger(ClassSortingFrame.class.getName()).log(Level.SEVERE, null, ex);
-       } */
         System.out.println(subject_name);
+        jComboBoxSubjectName.addItem(subject_name);
+        inputSubjectName.setText(""); 
+        
     }//GEN-LAST:event_AddSubjectNameActionPerformed
 
+    public void addSubjecsToSubjectNameBox(List<String> Subjects){
+        for(String s : Subjects){
+            jComboBoxSubjectName.addItem(s);
+        }
+    }
+    
     private void DevideStudent1ComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_DevideStudent1ComponentRemoved
         // TODO add your handling code here:
     }//GEN-LAST:event_DevideStudent1ComponentRemoved
@@ -847,6 +859,20 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
     private void GroupSizeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupSizeBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GroupSizeBoxActionPerformed
+
+    private void jComboBoxSubjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSubjectNameActionPerformed
+        // TODO add your handling code here:
+       System.out.println("Subject Chosen: " + jComboBoxSubjectName.getSelectedItem());
+        ListOfAllStudents.removeAll();
+    }//GEN-LAST:event_jComboBoxSubjectNameActionPerformed
+
+    private void jComboBoxSubjectNameComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBoxSubjectNameComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSubjectNameComponentShown
+
+    private void jComboBoxClassNameComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBoxClassNameComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxClassNameComponentShown
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

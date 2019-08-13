@@ -23,6 +23,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import java.util.List;
 
 /**
  * Inger Heebøll Gemzøe
@@ -34,21 +35,21 @@ public class MyGroupSort {
         pro.createConnection();
         SQLStatements sql = new SQLStatements();
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+                       public void run() {
                 ClassSortingFrame classFrame = new ClassSortingFrame();
                 classFrame.addClassesToClassNameBox(sql.RetrieveClasses());
+            //classFrame.addSubjecsToSubjectNameBox(sql.RetrieveSubjects());
                 classFrame.setVisible(true);
-            }
+                       }
         });
-    }
-
+        }
+        
     void createConnection() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/groupsort", "root", "Spiren22");
             Statement stmt = con.createStatement();
-            
-            {
+           {
                 /* ResultSet rs = stmt.executeQuery("SELECT * FROM STUDENT");
             while (rs.next() ){
                int student_id = rs.getInt("Student_id");

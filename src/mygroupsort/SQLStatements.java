@@ -52,4 +52,29 @@ public class SQLStatements {
         }
         return returnList;
     }
+    
+     public List<String> RetrieveSubjects()  {
+        List<String> queryList = null;
+        try {
+            queryList = executeSQLStatement("select distinct Subject_name from Subject;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+         }
+        return queryList;
+    }
+     
+     
+   private List<String> parseSubjectsToList(ResultSet classResult) {
+        List<String> returnList = new ArrayList<String>();
+        try {
+            while (classResult.next()) {
+                returnList.add(classResult.getString("Subject_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return returnList;
+    }   
 }
