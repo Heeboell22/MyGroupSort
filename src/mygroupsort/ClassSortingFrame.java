@@ -29,7 +29,7 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         ListOfAllStudents.setModel(dm);
         dm.addElement(student_name);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -738,8 +738,8 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void SortStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortStudentButtonActionPerformed
-      int selectedGroupSize = (int)GroupSizeBox.getSelectedItem();
-      //GroupGeneratorConfiguration config = new GroupGeneratorConfiguration(selectedGroupSize);
+        int selectedGroupSize = (int) GroupSizeBox.getSelectedItem();
+        //GroupGeneratorConfiguration config = new GroupGeneratorConfiguration(selectedGroupSize);
     }//GEN-LAST:event_SortStudentButtonActionPerformed
 
     private void DevideStudent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevideStudent1ActionPerformed
@@ -779,47 +779,56 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
         String Class_name = inputClassName.getText();
         System.out.println(Class_name);
         jComboBoxClassName.addItem(Class_name);
-        inputClassName.setText(""); 
-        
+        inputClassName.setText("");
+
     }//GEN-LAST:event_AddClassNameActionPerformed
 
-    public void addClassesToClassNameBox(List<String> Classes){
-        for(String s : Classes){
+    public void addClassesToClassNameBox(List<String> Classes) {
+        for (String s : Classes) {
             jComboBoxClassName.addItem(s);
         }
     }
-    
+
     private void AddSubjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSubjectNameActionPerformed
         String subject_name = inputSubjectName.getText();
         System.out.println(subject_name);
         jComboBoxSubjectName.addItem(subject_name);
-        inputSubjectName.setText(""); 
-        
+        inputSubjectName.setText("");
+
     }//GEN-LAST:event_AddSubjectNameActionPerformed
 
-    public void addSubjecsToSubjectNameBox(List<String> Subjects){
-        for(String s : Subjects){
+    public void addSubjecsToSubjectNameBox(List<String> Subjects) {
+        for (String s : Subjects) {
             jComboBoxSubjectName.addItem(s);
         }
     }
-    
+
     private void DevideStudent1ComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_DevideStudent1ComponentRemoved
-        // TODO add your handling code here:
+        String Students = inputStudentName.getText();
+        DevideStudent1.addItem(Students);
+        System.out.println("Student1 chosen: " + DevideStudent1.getSelectedItem());
+        ListOfAllStudents.removeAll();
     }//GEN-LAST:event_DevideStudent1ComponentRemoved
 
     private void DevideStudent2ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_DevideStudent2ComponentAdded
         String Students = inputStudentName.getText();
         DevideStudent2.addItem(Students);
+        System.out.println("Student2 chosen: " + DevideStudent2.getSelectedItem());
+        ListOfAllStudents.removeAll();
     }//GEN-LAST:event_DevideStudent2ComponentAdded
 
     private void PairStudent1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_PairStudent1ComponentAdded
         String Students = inputStudentName.getText();
         PairStudent1.addItem(Students);
+        System.out.println("Student3 chosen: " + PairStudent1.getSelectedItem());
+        ListOfAllStudents.removeAll();
     }//GEN-LAST:event_PairStudent1ComponentAdded
 
     private void PairStudent2ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_PairStudent2ComponentAdded
         String Students = inputStudentName.getText();
         PairStudent2.addItem(Students);
+        System.out.println("Student4 chosen: " + PairStudent2.getSelectedItem());
+        ListOfAllStudents.removeAll();
     }//GEN-LAST:event_PairStudent2ComponentAdded
 
     private void ListOfAllStudentsAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ListOfAllStudentsAncestorAdded
@@ -862,7 +871,7 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
 
     private void jComboBoxSubjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSubjectNameActionPerformed
         // TODO add your handling code here:
-       System.out.println("Subject Chosen: " + jComboBoxSubjectName.getSelectedItem());
+        System.out.println("Subject Chosen: " + jComboBoxSubjectName.getSelectedItem());
         ListOfAllStudents.removeAll();
     }//GEN-LAST:event_jComboBoxSubjectNameActionPerformed
 
@@ -969,5 +978,9 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    }
+
+    void createConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

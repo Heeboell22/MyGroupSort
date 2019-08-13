@@ -1,34 +1,47 @@
 package mygroupsort;
 
-import com.mysql.jdbc.Connection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SortMyClasses extends javax.swing.JFrame implements ActionListener {
+public class ExperimentClass_writingOnInterfaceToConsole extends javax.swing.JFrame implements ActionListener {
 
-    Connection con;
+
     String Student_name;
 
-    public SortMyClasses() {
+    public ExperimentClass_writingOnInterfaceToConsole() {
         initComponents();
     }
 
-    void CreateConnection() {
+     void createConnection() throws SQLException {
+         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            com.mysql.jdbc.Connection con = (com.mysql.jdbc.Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/groupsort", "root", "Spiren22");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupsort", "root", "Spiren22");
+           Statement stmt = con.createStatement();
+           {
+                /* ResultSet rs = stmt.executeQuery("SELECT * FROM STUDENT");
+            while (rs.next() ){
+               int student_id = rs.getInt("Student_id");
+               String student_name = rs.getString("Student_name");
+               String Class = rs.getString("class");
+               System.out.println(student_id + " " + " " + student_name + " " + Class  );
+                 */
+                //stmt.executeUpdate("INSERT INTO STUDENT (STUDENT_NAME, CLASS) VALUES ('Tenna', '2Y')");
+            }
+
             System.out.println("Connection to database was a succes");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MyGroupSort.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(MyGroupSort.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,7 +121,9 @@ public class SortMyClasses extends javax.swing.JFrame implements ActionListener 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
+        MyGroupSort pro = new MyGroupSort();
+        pro.createConnection();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -122,20 +137,21 @@ public class SortMyClasses extends javax.swing.JFrame implements ActionListener 
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SortMyClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExperimentClass_writingOnInterfaceToConsole.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SortMyClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExperimentClass_writingOnInterfaceToConsole.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SortMyClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExperimentClass_writingOnInterfaceToConsole.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SortMyClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExperimentClass_writingOnInterfaceToConsole.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SortMyClasses().setVisible(true);
+                new ExperimentClass_writingOnInterfaceToConsole().setVisible(true);
             }
         });
     }
