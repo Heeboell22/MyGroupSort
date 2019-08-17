@@ -38,7 +38,8 @@ public class MyGroupSort {
                        public void run() {
                 ClassSortingFrame classFrame = new ClassSortingFrame();
                 classFrame.addClassesToClassNameBox(sql.RetrieveClasses());
-            //classFrame.addSubjecsToSubjectNameBox(sql.RetrieveSubjects());
+                classFrame.addSubjecsToSubjectNameBox(sql.RetrieveSubjects());
+                
                 classFrame.setVisible(true);
                        }
         });

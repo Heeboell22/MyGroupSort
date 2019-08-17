@@ -1,4 +1,4 @@
-package mygroupsort;
+package mygroupsort.PracticeBox;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mygroupsort.MyGroupSort;
 
 public class ExperimentClass_writingOnInterfaceToConsole extends javax.swing.JFrame implements ActionListener {
 

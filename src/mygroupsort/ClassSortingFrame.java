@@ -136,12 +136,12 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GroupSizeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SortStudentButton)
                 .addGap(21, 21, 21))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel13)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 179, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,12 +550,12 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
             public String getElementAt(int i) { return strings[i]; }
         });
         ListOfAllStudents.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 ListOfAllStudentsAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         ListOfAllStudents.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -862,6 +862,8 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
 
     private void jComboBoxClassNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassNameActionPerformed
         System.out.println("Class Chosen: " + jComboBoxClassName.getSelectedItem());
+        SQLStatements sql = new SQLStatements();
+       addStudentNameToListOfAllStudents(sql.RetrieveStudentNames(jComboBoxClassName.getSelectedItem().toString()));
         ListOfAllStudents.removeAll();
     }//GEN-LAST:event_jComboBoxClassNameActionPerformed
 
@@ -983,4 +985,13 @@ public class ClassSortingFrame extends javax.swing.JFrame implements ActionListe
     void createConnection() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-}
+
+    void addStudentNameToListOfAllStudents(List<String> RetrieveStudentNames) {
+        
+        for (String s : RetrieveStudentNames) {
+        ListOfAllStudents.setModel(dm);
+        dm.addElement(s);
+    }
+        }
+    } 
+
